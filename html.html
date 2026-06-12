@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkinZone - Order Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: #121212;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: #1e1e1e;
+            max-width: 450px;
+            width: 100%;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            border: 1px solid #333;
+        }
+        /* প্রোডাক্ট পোস্টের ডিজাইন */
+        .post-card {
+            background: #252525;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 5px solid #ff6600;
+        }
+        .post-card h2 {
+            font-size: 20px;
+            color: #ff6600;
+            margin-bottom: 10px;
+        }
+        .post-card p {
+            font-size: 14px;
+            color: #ddd;
+            line-height: 1.6;
+            white-space: pre-line; /* লেখার স্পেস ও লাইন ব্রেক ঠিক রাখার জন্য */
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 12px;
+            background: #ff6600;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #e05500;
+        }
+        .btn-google {
+            background: #ffffff;
+            color: #000000;
+        }
+        .btn-google:hover {
+            background: #e6e6e6;
+        }
+        /* ফর্মের ডিজাইন */
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #aaa;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            background: #2b2b2b;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: white;
+            font-size: 15px;
+        }
+        .form-group input:focus {
+            border-color: #ff6600;
+            outline: none;
+        }
+        .hidden {
+            display: none;
+        }
+        .status-msg {
+            color: #00ffcc;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- 1. আপনার পোস্ট সেকশন (এখানে একটানা অনেকগুলো লেখা দিতে পারবেন) -->
+    <div class="post-card">
+        <h2>🔥 বিশেষ অফার / সার্ভিস পোস্ট!</h2>
+        <p>এখানে আপনার সার্ভিসের বিস্তারিত বা একটানা অনেকগুলো পোস্টের লেখা লিখবেন।
+        যেমন: 
+        - প্রিমিয়াম বাস স্কিন বা লিভারি ডিজাইন।
+        - ফ্রি ফায়ার কাস্টম লোগো মেকিং।
+        - ১০০% নিখুঁত এবং প্রফেশনাল কাজ।
+        
+        অর্ডার করতে নিচের বাটনে ক্লিক করুন!</p>
+    </div>
+
+    <!-- 2. গুগল লগইন বাটন (অর্ডার করার আগে অবশ্যই লগইন করতে হবে) -->
+    <div id="login-section">
+        <p style="font-size: 13px; color: #aaa; margin-bottom: 10px; text-align: center;">অর্ডার ফর্মটি ওপেন করতে প্রথমে জিমেইল দিয়ে ভেরিফাই করুন:</p>
+        <button id="btn-login" class="btn btn-google">
+            <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" alt="Google" width="20">
+            Order Now (Continue with Google)
+        </button>
+    </div>
+
+    <!-- 3. নাম এবং হোয়াটসঅ্যাপ নাম্বার চাওয়ার ফর্ম -->
+    <div id="order-form-section" class="hidden">
+        <h3 style="margin-bottom: 15px; color: #ff6600; text-align: center;">অর্ডার ইনফরমেশন দিন</h3>
+        
+        <div class="form-group">
+            <label for="cust-name">আপনার নাম (Full Name):</label>
+            <input type="text" id="cust-name" placeholder="যেমন: মামুন খান" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cust-whatsapp">হোয়াটসঅ্যাপ নাম্বার (WhatsApp Number):</label>
+            <input type="tel" id="cust-whatsapp" placeholder="যেমন: 017XXXXXXXX" required>
+        </div>
+
+        <button id="btn-submit-order" class="btn">Place Order (অর্ডার প্লেস করুন)</button>
+    </div>
+
+    <!-- 4. অর্ডার সফল হওয়ার পর মেসেজ -->
+    <div id="success-section" class="hidden">
+        <h2 style="color: #00ffcc;">🎉 Order Placed Successfully!</h2>
+        <p style="margin-top: 10px; color: #ddd;">আপনার অর্ডারটি আমাদের ডাটাবেজে সফলভাবে জমা হয়েছে। আমরা খুব দ্রুত আপনার হোয়াটসঅ্যাপ নাম্বারে যোগাযোগ করব।</p>
+    </div>
+
+</div>
+
+<!-- Firebase SDK Scripts (From your screenshot 1000388443.png) -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDMsUZv88cETrRZBYhP4tulGkPdGroDYrw",
+        authDomain: "skinzone-21d0c.firebaseapp.com",
+        projectId: "skinzone-21d0c",
+        storageBucket: "skinzone-21d0c.firebasestorage.app",
+        messagingSenderId: "44465884752",
+        appId: "1:44465884752:web:3f7e34b0295d6e43019255",
+        measurementId: "G-VCLDMWXF28"
+    };
+
+    // Initialize Firebase & Services
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
+
+    // DOM Elements
+    const loginSection = document.getElementById('login-section');
+    const orderFormSection = document.getElementById('order-form-section');
+    const successSection = document.getElementById('success-section');
+    const btnLogin = document.getElementById('btn-login');
+    const btnSubmitOrder = document.getElementById('btn-submit-order');
+
+    let currentUser = null;
+
+    // 1. Google Sign-In
+    btnLogin.addEventListener('click', () => {
+        signInWithPopup(auth, provider).catch((error) => {
+            alert("লগইন ব্যর্থ হয়েছে: " + error.message);
+        });
+    });
+
+    // Track Auth State (লগইন থাকলে সরাসরি ফর্ম দেখাবে)
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            currentUser = user;
+            loginSection.classList.add('hidden');
+            // যদি অলরেডি অর্ডার সাবমিট না হয়ে থাকে তবে ফর্ম দেখাবে
+            if(successSection.classList.contains('hidden')) {
+                orderFormSection.classList.remove('hidden');
+                // গুগলের নাম অটোমেটিক ইনপুট বক্সে বসিয়ে দেওয়া
+                document.getElementById('cust-name').value = user.displayName || "";
+            }
+        } else {
+            loginSection.classList.remove('hidden');
+            orderFormSection.classList.add('hidden');
+        }
+    });
+
+    // 2. Save Order to Firestore (ডাটাবেজে নাম ও নাম্বার সেভ করা)
+    btnSubmitOrder.addEventListener('click', async () => {
+        const name = document.getElementById('cust-name').value.trim();
+        const whatsapp = document.getElementById('cust-whatsapp').value.trim();
+
+        if (!name || !whatsapp) {
+            alert("অনুগ্রহ করে আপনার নাম এবং হোয়াটসঅ্যাপ নাম্বার দুটিই সঠিকভাবে লিখুন!");
+            return;
+        }
+
+        btnSubmitOrder.innerText = "Processing...";
+        btnSubmitOrder.disabled = true;
+
+        try {
+            // Firestore-এ 'orders' নামে একটি কালেকশনে ডাটা জমা হবে
+            await addDoc(collection(db, "orders"), {
+                customerName: name,
+                whatsAppNumber: whatsapp,
+                email: currentUser.email, // গুগলের আসল ইমেইল
+                googleName: currentUser.displayName, // গুগলের আসল নাম
+                orderDate: serverTimestamp() // অর্ডার করার সময়
+            });
+
+            // সফল হলে ফর্ম লুকিয়ে সাকসেস স্ক্রিন দেখানো
+            orderFormSection.classList.add('hidden');
+            successSection.classList.remove('hidden');
+
+        } catch (error) {
+            alert("অর্ডার সেভ করতে সমস্যা হয়েছে: " + error.message);
+            btnSubmitOrder.innerText = "Place Order (অর্ডার প্লেস করুন)";
+            btnSubmitOrder.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>
